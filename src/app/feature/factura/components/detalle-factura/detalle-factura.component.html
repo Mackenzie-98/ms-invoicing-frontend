@@ -1,0 +1,109 @@
+<br>
+<section id="pricing" class="pricing">
+  <div class="container">
+      <div class="container" data-aos="fade-up">
+          <div class="invoice-box">
+              <table cellpadding="0" cellspacing="0">
+                  <tr class="top">
+                      <td colspan="2">
+                          <table>
+                              <tr>
+                                  <td class="tittle" style="width: 8%;">
+                                      <img src="../assets/logo.png" style="width: 100%;" />
+
+                                  </td>
+                                  <td class="heading " style="width: 40%; text-align: center">
+                                      <h2 id="titulo">Ceiba Software</h2>
+                                  </td>
+                                  <td style="width: 50%; text-align: left; padding-left:  20%">
+                                      Ceiba Software, S.A.S.<br />
+                                      Cl. 8B #65-191 <br />
+                                      Medellin, Antioquia.
+                                  </td>
+
+                              </tr>
+                          </table>
+                      </td>
+                  </tr>
+
+                  <tr class="information">
+                      <td colspan="2">
+                          <table> 
+                              <tr>
+                                  <td style="text-align: left; ">
+                                      <p style="font-weight: bold;" class="mb-1">Edinsson Adrian Melo Calvo</p>
+                                      <p class="text-secondary mb-1">Arquitecto Desarrollador Java</p>
+                                      <p class="text-secondary mb-1">adrian.melo@ceiba.com.co</p>
+                                      
+                                      
+                              </tr>
+                          </table>
+                      </td>
+                  </tr>
+
+                    <!-- <tr class="heading">
+                        <td>Facturación</td>
+                        <td>Detalle</td>
+                    </tr>
+
+                    <tr class="details">
+                        <td>No. Factura<br />
+                            Descripcion <br />
+                            Fecha<br />
+                        </td>
+
+                        <td>
+                            {{factura.id}}<br />
+                            {{factura.descripcion}} <br />
+                            {{factura.fecha}}<br />
+                        </td>
+                    </tr> -->
+
+                    <table id="detalle-factura" class="container-fluid text-center"> 
+                      <thead> 
+                        <tr class="heading container-fluid">
+                          <th scope="col" class="text-left">Facturación</th>
+                          <th scope="col" class="text-right">Detalle</th>
+                        </tr>
+                    </thead>
+                      <tbody>
+                        <tr>
+                          <td class="text-left">No. Factura</td>
+                          <td class="text-right">{{factura.id}}</td>
+                        </tr>
+                        <tr>
+                          <td class="text-left">Descripcion</td>
+                          <td class="text-right">{{factura.descripcion}}</td>
+                        </tr>
+                        <tr>
+                          <td class="text-left">Fecha</td>
+                          <td class="text-right">{{factura.fecha}}</td>
+                        </tr>
+                       </tbody>
+                    </table>
+
+                  <table id="detalle-venta" class="container-fluid text-center">  
+                    <thead> 
+                      <tr class="heading container-fluid">
+                        <th scope="col">Productos</th>
+                        <th scope="col" ></th>
+                        <th scope="col"></th>
+                    </tr></thead>
+                    <tbody>
+                      <tr *ngFor="let venta of factura.productosVenta; let i = index">
+                        <td class="text-left" >{{venta.producto.nombre}}</td>
+                        <td class="text-left">x{{venta.cantidad}}......................................................................................</td>
+                        <td>{{subTotal(venta.cantidad,venta.producto.precioUnitario)}}</td>
+                      </tr>
+                     </tbody>
+                  </table>
+
+
+                  <tr class="total">
+                      <td class="text-right" style="font-weight: bold; ">Total: {{factura.total}}</td>
+                  </tr>
+              </table>
+          </div>
+      </div>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+<br>
+<div class="container" id="listaUsuarios">
+  <table class="table table-striped"> 
+    <thead> 
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Contraseña</th>
+        <th scope="col">Acciones</th> 
+    </tr></thead>
+    <tbody>
+      <tr *ngFor="let usuario of listaUsuarios | async">
+        <td>{{usuario.id}}</td>
+        <td>{{usuario.nombre}}</td>
+        <td>{{hashPassword(usuario.clave)}} </td>
+        <td> 
+          <!-- acciones -->
+          <button class="btn btn-dark btn-sm"  (click)= "vender(usuario)">Vender</button>
+          &nbsp;
+          <button class="btn btn-primary btn-sm" (click)= "verFacturas(usuario.id)">Facturas</button>
+          &nbsp;
+          <button class="btn btn-success btn-sm" routerLink="/actualizararticulo/{{usuario.id}}">Editar</button>
+          &nbsp;
+          <app-borrar-usuario [usuario]=usuario> </app-borrar-usuario>
+        </td>
+      </tr>
+     </tbody>
+  </table>
+</div>
+

@@ -1,0 +1,23 @@
+.container{
+    width: 30%;
+}
+
+#formulario{
+    border: 1px solid #000;
+    box-shadow: 5px 3px 3px black;
+}
+
+#titulo{
+    text-align: center;
+    vertical-align: middle;
+    margin: 10px;
+    font-family: 'Brush Script MT', cursive;
+}
+.row{
+    margin: 3% 0%;
+}
+
+#facturar{
+    width: 20%;
+    margin-bottom: 3%;
+}

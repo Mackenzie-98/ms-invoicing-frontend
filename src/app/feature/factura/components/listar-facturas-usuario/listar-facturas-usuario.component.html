@@ -1,0 +1,28 @@
+<br>
+<div class="container" id="listaUsuarios">
+  <table class="table table-striped"> 
+    <thead> 
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Total</th>
+        <th scope="col">Acciones</th> 
+    </tr></thead>
+    <tbody>
+      <tr *ngFor="let factura of listaFacturas; let i = index">
+        <td>{{factura.id}}</td>
+        <td>{{factura.descripcion}}</td>
+        <td>{{factura.fecha}} </td>
+        <td>{{factura.total}} </td>
+        <td> 
+          <!-- (click)= "navegar(usuario) -->
+          <button class="btn btn-dark btn-sm" (click)="detalleFactura(factura)">Detalle</button>
+          &nbsp;
+          <button class="btn btn-primary btn-sm" (click)="eliminarFactura(i,factura)">Eliminar</button>
+        </td>
+      </tr>
+     </tbody>
+  </table>
+</div>
+

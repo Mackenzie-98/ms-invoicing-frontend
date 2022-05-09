@@ -1,1 +1,28 @@
-<p>home works!</p>
+<br>
+<br>
+
+<div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row">
+
+        <div class="card col-md-6" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+        [routerLink]="[ '/usuario' ]">
+          <div class="d-flex justify-content-center">
+          <img class="card-img-top" src="assets/usuarios.png" alt="usuarios.png">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-center">Usuarios</h5>
+          </div>
+        </div>
+        
+        <div class="card col-md-6" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+        [routerLink]="[ '/producto' ]">
+          <div class="d-flex justify-content-center">
+          <img class="card-img-top" src="assets/planes.png" alt="productos.png">
+        </div>
+          <div class="card-body">
+            <h5 class="card-title text-center">Productos</h5>
+          </div>
+        </div>
+    
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<br>
+
+<div class="container">
+  <form [formGroup]="usuarioForm"  (ngSubmit)="crear()" id="formulario">
+    <div id="titulo">
+      Crear Usuario
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <input validar type="text" id="nombre" name="nombre" placeholder="Nombre de usuario"
+            class="form-control" formControlName="nombre">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <input validar type="text" id="clave" name="clave" placeholder="Contraseña"
+            class="form-control" formControlName="clave">
+        </div>
+      </div>  
+    </div>
+    <div class="d-flex justify-content-center">
+      <button [disabled]="!usuarioForm.valid" id="guardar" class="btn btn-secondary btn-sm">Crear</button>
+    </div>
+  </form>
+</div>
+

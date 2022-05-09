@@ -1,8 +1,15 @@
-<nav>
-  <a id="linkProducto" routerLink="./" routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }">Producto</a>
-  <a id="linkCrearProducto" routerLink="./crear" routerLinkActive="active">Crear producto</a>
-  <a id="linkBorrarProducto" routerLink="./borrar" routerLinkActive="active">Borrar producto</a>
-  <a id="linkListarProducto" routerLink="./listar" routerLinkActive="active">listar producto</a>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a id="linkCrearUsuario"  class="nav-link" routerLink="./crear">Crear Productos</a>
+      </li>
+      <li class="nav-item">
+        <a id="linkListarUsuario" class="nav-link" routerLink="./listar">Listar Productos</a>
+      </li>
+    </ul>
+  </div>
 </nav>
+  
 <router-outlet></router-outlet>

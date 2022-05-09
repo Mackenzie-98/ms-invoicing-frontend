@@ -1,22 +1,33 @@
-<h1>Registrar Producto</h1>
-<h3>Ejemplo validacion de formularios reactivos con directiva</h3>
-<form [formGroup]="productoForm" (ngSubmit)="cerar()">
-  <div class="row">
-    <div class="col-sm-2">
-      <label>Id:</label>
+<br>
+
+<div class="container">
+  <form [formGroup]="productoForm" (ngSubmit)="crear()" id="formulario">
+    <div id="titulo">
+      Crear Producto
     </div>
-    <div class="col-sm-4">
-      <input validar type="text" id="idProducto" name="idProducto" placeholder="Id producto" class="form-control"
-        formControlName="id">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <input validar type="text" id="id" name="id" placeholder="Id producto" class="form-control"
+            formControlName="id">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <input validar type="text" id="nombre" name="nombre" placeholder="Nombre producto"
+            class="form-control" formControlName="nombre">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <input validar type="text" id="precioUnitario" name="precioUnitario" placeholder="Precio unitario"
+            class="form-control" formControlName="precioUnitario">
+        </div>
+      </div>  
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-2">
-      <label>Descripción:</label>
-    </div>
-    <div class="col-sm-4">
-      <input validar type="text" id="descripcionProducto" name="descripcion" placeholder="Descripción producto"
-        class="form-control" formControlName="descripcion">
-    </div>
-  </div>
-</form>
+      <div class="d-flex justify-content-center">
+        <button id="guardar" class="btn btn-secondary btn-sm">Crear</button>
+      </div>
+  </form>
+</div>
+

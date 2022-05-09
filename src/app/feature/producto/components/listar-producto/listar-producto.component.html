@@ -1,8 +1,25 @@
-<p>listar-producto works!</p>
-<div id="productos">
-  <ul class="productos">
-    <li *ngFor="let item of listaProductos | async">
-      <span>{{item.id}}</span> {{item.descripcion}}
-    </li>
-  </ul>
+<br>
+<div class="container" id="listaProductos">
+  <table class="table table-striped"> 
+    <thead> 
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio Unitario</th>
+        <th scope="col">Acciones</th> 
+    </tr></thead>
+    <tbody>
+      <tr *ngFor="let producto of listaProductos | async">
+        <td>{{producto.id}}</td>
+        <td>{{producto.nombre}}</td>
+        <td>{{producto.precioUnitario}} </td>
+        <td> 
+          <!-- acciones -->
+          <button class="btn btn-success btn-sm" routerLink="/actualizarProducto/{{producto.id}}">Editar</button>
+          &nbsp;
+          <app-borrar-producto [producto]=producto> </app-borrar-producto>
+        </td>
+      </tr>
+     </tbody>
+  </table>
 </div>
