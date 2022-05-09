@@ -8,6 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ProductoService } from '../../shared/service/producto.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { IAlertaService } from '@core/services/alertas/alerta.service';
 
 describe('CrearProductoComponent', () => {
   let component: CrearProductoComponent;
@@ -24,7 +25,7 @@ describe('CrearProductoComponent', () => {
         ReactiveFormsModule,
         FormsModule
       ],
-      providers: [ProductoService, HttpService],
+      providers: [ProductoService, HttpService,IAlertaService],
     })
     .compileComponents();
   }));
@@ -49,12 +50,12 @@ describe('CrearProductoComponent', () => {
 
   it('Registrando producto', () => {
     expect(component.productoForm.valid).toBeFalsy();
-    component.productoForm.controls.id.setValue('001');
-    component.productoForm.controls.descripcion.setValue('Producto test');
+    component.productoForm.controls.id.setValue('1');
+    component.productoForm.controls.nombre.setValue('ProductoTest');
+    component.productoForm.controls.precioUnitario.setValue(1000);
     expect(component.productoForm.valid).toBeTruthy();
 
-    component.cerar();
-
+    component.crear();
     // Aca validamos el resultado esperado al enviar la petición
     // TODO adicionar expect
   });

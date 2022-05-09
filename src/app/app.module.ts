@@ -8,6 +8,10 @@ import { ProductoModule } from '@producto/producto.module';
 import { CoreModule } from '@core/core.module';
 import { CookieService } from 'ngx-cookie-service';
 import { UsuarioModule } from '@usuario/usuario.module';
+import { TrmComponent } from './feature/trm/components/trm.component';
+import { TrmService } from './feature/trm/service/trm.service';
+import { FacturaModule } from '@factura/factura.module';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -15,16 +19,18 @@ import { UsuarioModule } from '@usuario/usuario.module';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    TrmComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ProductoModule,
     UsuarioModule,
+    FacturaModule,
     CoreModule
   ],
-  providers: [CookieService],
+  providers: [TrmService,CookieService, DatePipe],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

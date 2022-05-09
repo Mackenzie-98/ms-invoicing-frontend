@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { ProductoService } from '../../shared/service/producto.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IAlertaService } from '@core/services/alertas/alerta.service';
@@ -10,6 +10,8 @@ const PRODUCTO_CREADO_CORRECTAMENTE = 'Se ha creado el producto correctamente.';
   templateUrl: './crear-producto.component.html',
   styleUrls: ['./crear-producto.component.css']
 })
+
+@Injectable()
 export class CrearProductoComponent implements OnInit {
   productoForm: FormGroup;
   constructor(protected productoServices: ProductoService, private alerta: IAlertaService) { }
@@ -21,7 +23,7 @@ export class CrearProductoComponent implements OnInit {
   crear() {
     this.productoServices.guardar(this.productoForm.value).subscribe(
       data => {if (data){
-        this.alerta.exito(PRODUCTO_CREADO_CORRECTAMENTE);
+        this.alerta.exito(PRODUCTO_CREADO_CORRECTAMENTE).subscribe();
         this.productoForm.reset();
       }}
     );

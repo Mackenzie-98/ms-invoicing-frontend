@@ -1,19 +1,19 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
-import { ListarProductoComponent } from './listar-usuario.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ProductoService } from '../../shared/service/usuario.service';
-import { Producto } from '../../shared/model/usuario';
 import { HttpService } from 'src/app/core/services/http.service';
+import { ListarProductoComponent } from '@producto/components/listar-producto/listar-producto.component';
+import { ProductoService } from '@producto/shared/service/producto.service';
+import { Producto } from '@producto/shared/model/producto';
 
 describe('ListarProductoComponent', () => {
   let component: ListarProductoComponent;
   let fixture: ComponentFixture<ListarProductoComponent>;
   let productoService: ProductoService;
-  const listaProductos: Producto[] = [new Producto('1', 'Producto 1'), new Producto('2', 'Producto 2')];
+  const listaProductos: Producto[] = [new Producto(1, 'Producto 1',1000), new Producto(2, 'Producto 2',1000)];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

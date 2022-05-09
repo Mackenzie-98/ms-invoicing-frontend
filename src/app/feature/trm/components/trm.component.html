@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="container">
+    <label for="trmHoy" *ngIf="spinner==false" class="text-secondary mb-1"> TRM hoy:</label> &nbsp;
+    <input id="trmHoy" disabled *ngFor="let trm of trmActual | async | slice :0:1" value="{{ trm.valor | currency }}">
+  </div>
+
+        
+    <div *ngIf="spinner" class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+</div>
