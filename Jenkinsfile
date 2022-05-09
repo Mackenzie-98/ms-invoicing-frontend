@@ -26,19 +26,23 @@ pipeline {
                 }
         }
 
-      stage('NPM Install') {
-      steps {
-        withEnv(['NPM_CONFIG_LOGLEVEL=warn']) {
+      stage('Install') {
+		steps {
           sh 'npm install'
-        }
       }
     }
+	
+	  stage('Build') {
+        steps {
+          sh 'npm run build'
+            }
+        }
 
 
-     stage('Test Unit') {
+     stage('Test') {
       steps{
         echo "------------>Test<------------"
-        sh 'npm run test -- --watch=false --browsers ChromeHeadless'
+        sh 'npm run test'
       }
     }
 
