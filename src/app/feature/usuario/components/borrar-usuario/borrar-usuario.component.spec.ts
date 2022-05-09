@@ -24,12 +24,7 @@ describe('BorrarUsuarioComponent', () => {
   afterAll(() => { TestBed.resetTestingModule(); });
 
   beforeEach(waitForAsync(() => {
-    alertaSpy = {
-      informativa: jasmine.createSpy('informativa'),
-      confirmacion: jasmine.createSpy('Esta seguro de eliminar este usuario?'),
-      errorInesperado: jasmine.createSpy('errorInesperado'),
-      exito: jasmine.createSpy('Se ha actualizado correctamente el usuario')
-    };
+
     TestBed.configureTestingModule({
       declarations: [ BorrarUsuarioComponent ],
       imports: [
@@ -63,10 +58,6 @@ describe('BorrarUsuarioComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Debe borrar un producto ', () => {
-    component.borrarUsuario();
-    expect(alertaSpy.confirmacion).toHaveBeenCalled();
-  });
 
 });
 

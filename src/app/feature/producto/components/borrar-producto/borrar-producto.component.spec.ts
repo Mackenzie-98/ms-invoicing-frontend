@@ -24,12 +24,6 @@ describe('BorrarProductoComponent', () => {
   afterAll(() => { TestBed.resetTestingModule(); });
 
   beforeEach(waitForAsync(() => {
-    alertaSpy = {
-      informativa: jasmine.createSpy('informativa'),
-      confirmacion: jasmine.createSpy('Esta seguro de eliminar este producto?'),
-      errorInesperado: jasmine.createSpy('errorInesperado'),
-      exito: jasmine.createSpy('Se ha eliminado el producto correctamente.')
-    };
     TestBed.configureTestingModule({
       declarations: [ BorrarProductoComponent ],
       imports: [
@@ -62,11 +56,6 @@ describe('BorrarProductoComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('Debe borrar un producto ', () => {
-    component.borrarProducto();
-    expect(alertaSpy.confirmacion).toHaveBeenCalled();
   });
 
 });
