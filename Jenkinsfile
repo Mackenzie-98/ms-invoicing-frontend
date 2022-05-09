@@ -54,8 +54,8 @@ pipeline {
       stage('Static Code Analysis') {
 			steps{
         echo '------------>Análisis de código estático<------------'
-		sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:ventacomponentesfrontend.john.ramirez',
-         sonarName:'''"CeibaADN-VentaComponentesFrontEnd(john.ramirez)"''',
+		sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:sistema.facturacion.front-adrian.melo',
+         sonarName:'''"CeibaADN-SistemaFacturacionFront(adrian.melo)"''',
          sonarPathProperties:'./sonar-project.properties')
 			}
 		}
@@ -70,7 +70,7 @@ pipeline {
         }
         failure {
             echo 'This will run only if failed'
-            mail (to: 'john.ramirez@ceiba.com.co',
+            mail (to: 'adrian.melo@ceiba.com.co',
             subject: "Failed Pipeline:${currentBuild.fullDisplayName}",
             body: "Something is wrong with ${env.BUILD_URL}")
         }
