@@ -11,8 +11,8 @@ import { IAlertaService } from '@core/services/alertas/alerta.service';
 import { AlertaServiceMock } from '@core/services/alertas/alerta.service-mock';
 import { ProductoService } from '@producto/shared/service/producto.service';
 import { Router } from '@angular/router';
-import { Usuario } from '@usuario/shared/model/usuario';
 import { Producto } from '@producto/shared/model/producto';
+import { Usuario } from '@usuario/shared/model/usuario';
 
 describe('CrearFacturaComponent', () => {
   let component: CrearFacturaComponent;
@@ -20,8 +20,22 @@ describe('CrearFacturaComponent', () => {
   let facturaService: FacturaService;
   let pruductoService: ProductoService;
   let alertaSpy: IAlertaService;
-  let router: jasmine.SpyObj<Router>;
+  let user = new Usuario(1,"test","1234",null);
+  let mockRouter = {
+    
+    navigate: jasmine.createSpy('navigate'),
+    getCurrentNavigation: () => {
+      return {
+         extras: {
+            state:{
+                usuarioInput: user
+            }
+          }
+        }
+      }
+  }
   const listaProductos: Producto[] = [new Producto(1, 'Producto 1',1500), new Producto(2, 'Producto 2',2000)];
+  
 
   beforeEach(waitForAsync(() => {
     alertaSpy = {
@@ -30,6 +44,7 @@ describe('CrearFacturaComponent', () => {
         errorInesperado: jasmine.createSpy('errorInesperado'),
         exito: jasmine.createSpy('Se ha creado la factura correctamente.')
       };
+
     TestBed.configureTestingModule({
       declarations: [ CrearFacturaComponent ],
       imports: [
@@ -39,19 +54,16 @@ describe('CrearFacturaComponent', () => {
         ReactiveFormsModule,
         FormsModule
       ],
-      providers: [FacturaService, HttpService, ProductoService, { provide: IAlertaService, useValue: new AlertaServiceMock(alertaSpy) }],
+      providers: [FacturaService, HttpService, ProductoService, {provide: Router, useValue: mockRouter},{provide: IAlertaService, useValue: new AlertaServiceMock(alertaSpy)}],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    router = TestBed.get(Router);
-    let user = new Usuario(1,"test","1234",null);
-    spyOn(router, 'getCurrentNavigation').and.returnValue({ extras: { state: { usuarioInput: user} } } as any);
     fixture = TestBed.createComponent(CrearFacturaComponent);
     component = fixture.componentInstance;
     facturaService = TestBed.inject(FacturaService);
-
+    
     spyOn(facturaService, 'guardar').and.returnValue(
       of(true)
     );
@@ -72,3 +84,4 @@ describe('CrearFacturaComponent', () => {
   });
 
 });
+
