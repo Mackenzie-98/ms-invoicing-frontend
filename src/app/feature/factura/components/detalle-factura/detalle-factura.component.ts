@@ -19,7 +19,6 @@ export class DetalleFacturaComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.factura);
   }
 
   subTotal(cantidad:number,precio:number):number{

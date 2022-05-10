@@ -12,13 +12,16 @@ import { AlertaServiceMock } from '@core/services/alertas/alerta.service-mock';
 import { ProductoService } from '@producto/shared/service/producto.service';
 import { Router } from '@angular/router';
 import { Usuario } from '@usuario/shared/model/usuario';
+import { Producto } from '@producto/shared/model/producto';
 
 describe('CrearFacturaComponent', () => {
   let component: CrearFacturaComponent;
   let fixture: ComponentFixture<CrearFacturaComponent>;
   let facturaService: FacturaService;
+  let pruductoService: ProductoService;
   let alertaSpy: IAlertaService;
   let router: jasmine.SpyObj<Router>;
+  const listaProductos: Producto[] = [new Producto(1, 'Producto 1',1500), new Producto(2, 'Producto 2',2000)];
 
   beforeEach(waitForAsync(() => {
     alertaSpy = {
@@ -48,9 +51,14 @@ describe('CrearFacturaComponent', () => {
     fixture = TestBed.createComponent(CrearFacturaComponent);
     component = fixture.componentInstance;
     facturaService = TestBed.inject(FacturaService);
+
     spyOn(facturaService, 'guardar').and.returnValue(
       of(true)
     );
+    pruductoService = TestBed.inject(ProductoService);
+    spyOn(pruductoService, 'consultar').and.returnValue(
+        of(listaProductos)
+      );
     fixture.detectChanges();
   });
 
