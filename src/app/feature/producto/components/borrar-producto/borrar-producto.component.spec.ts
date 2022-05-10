@@ -12,6 +12,7 @@ import { ProductoService } from '@producto/shared/service/producto.service';
 import { ProductoComponent } from '../producto/producto.component';
 import { AlertaServiceMock } from '@core/services/alertas/alerta.service-mock';
 import { Producto } from '@producto/shared/model/producto';
+import { Router } from '@angular/router';
 
 describe('BorrarProductoComponent', () => {
 
@@ -19,6 +20,10 @@ describe('BorrarProductoComponent', () => {
   let fixture: ComponentFixture<BorrarProductoComponent>;
   let productoService: ProductoService;
   let alertaSpy: IAlertaService;
+  let mockRouter = {
+    navigate: jasmine.createSpy('navigate'),
+    navigateByUrl: jasmine.createSpy('producto'),
+  }
 
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
@@ -43,6 +48,7 @@ describe('BorrarProductoComponent', () => {
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
       providers: [ProductoService, HttpService,
+        {provide: Router, useValue: mockRouter},
         {provide: IAlertaService, useValue: new AlertaServiceMock(alertaSpy)} ]
     })
     .compileComponents();

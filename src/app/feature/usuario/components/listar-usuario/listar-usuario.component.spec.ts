@@ -5,42 +5,42 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpService } from 'src/app/core/services/http.service';
-import { ListarProductoComponent } from '@producto/components/listar-producto/listar-producto.component';
-import { ProductoService } from '@producto/shared/service/producto.service';
-import { Producto } from '@producto/shared/model/producto';
+import { Usuario } from '@usuario/shared/model/usuario';
+import { ListarUsuarioComponent } from './listar-usuario.component';
+import { UsuarioService } from '@usuario/shared/service/usuario.service';
 
-describe('ListarProductoComponent', () => {
-  let component: ListarProductoComponent;
-  let fixture: ComponentFixture<ListarProductoComponent>;
-  let productoService: ProductoService;
-  const listaProductos: Producto[] = [new Producto(1, 'Producto 1',1000), new Producto(2, 'Producto 2',1000)];
+describe('ListarUsuarioComponent', () => {
+  let component: ListarUsuarioComponent;
+  let fixture: ComponentFixture<ListarUsuarioComponent>;
+  let usuarioService: UsuarioService;
+  const listaUsuarios: Usuario[] = [new Usuario(1, 'test','1234',null), new Usuario(2, 'test2','1234',null)];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ListarProductoComponent],
+      declarations: [ListarUsuarioComponent],
       imports: [
         CommonModule,
         HttpClientModule,
         RouterTestingModule
       ],
-      providers: [ProductoService, HttpService]
+      providers: [UsuarioService, HttpService]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListarProductoComponent);
+    fixture = TestBed.createComponent(ListarUsuarioComponent);
     component = fixture.componentInstance;
-    productoService = TestBed.inject(ProductoService);
-    spyOn(productoService, 'consultar').and.returnValue(
-      of(listaProductos)
+    usuarioService = TestBed.inject(UsuarioService);
+    spyOn(usuarioService, 'consultar').and.returnValue(
+      of(listaUsuarios)
     );
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    component.listaProductos.subscribe(resultado => {
+    component.listaUsuarios.subscribe(resultado => {
       expect(2).toBe(resultado.length);
   });
 });

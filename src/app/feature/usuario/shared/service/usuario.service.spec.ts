@@ -29,7 +29,7 @@ describe('ProductoService', () => {
 
   it('deberia listar usuarios', () => {
     const dummyUsuarios = [
-      new Usuario(1, 'Producto 2','1234',null), new Usuario(2, 'Producto 2','1234',null)
+      new Usuario(1, 'usuario 2','1234',null), new Usuario(2, 'usuario 2','1234',null)
     ];
     service.consultar().subscribe(usuarios => {
       expect(usuarios.length).toBe(2);
@@ -41,8 +41,8 @@ describe('ProductoService', () => {
   });
 
   it('deberia crear un usuario', () => {
-    const dummyProducto = new Usuario(1, 'Producto 2','1234',null);
-    service.guardar(dummyProducto).subscribe((respuesta) => {
+    const dummyUsuario = new Usuario(1, 'usuario 2','1234',null);
+    service.guardar(dummyUsuario).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
     const req = httpMock.expectOne(apiEndpointUsuarios);
@@ -51,8 +51,8 @@ describe('ProductoService', () => {
   });
 
   it('deberia eliminar un usuario', () => {
-    const dummyProducto = new Usuario(1, 'Producto 2','1234',null);
-    service.eliminar(dummyProducto).subscribe((respuesta) => {
+    const dummyUsuario = new Usuario(1, 'usuario 2','1234',null);
+    service.eliminar(dummyUsuario).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
     const req = httpMock.expectOne(`${apiEndpointUsuarios}/1`);
