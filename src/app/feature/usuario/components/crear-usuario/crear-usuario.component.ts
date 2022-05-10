@@ -22,10 +22,10 @@ export class CrearUsuarioComponent implements OnInit {
 
   crear() {
     this.usuarioServices.guardar(this.usuarioForm.value).subscribe(
-      data => {if (data){
+      () => {
         this.alerta.exito(mensajeCreoUsuario);
         this.usuarioForm.reset();
-      }}
+      }
     );
 
   }

@@ -70,12 +70,11 @@ export class CrearFacturaComponent implements OnInit {
   facturar(){
     this.factura = new Factura(null,this.descripcion,this.usuario,this.carritoCompras, null,this.total);
     this.facturaServices.guardar(this.factura).subscribe(
-      data => {
-        if (data){
+      () => {
         this.alerta.exito(FACTURA_CREADA_CORRECTAMENTE);
         this.carritoCompras = [];
         this.router.navigateByUrl('/usuario/listar');
-      }}
+      }
     );
     
   }

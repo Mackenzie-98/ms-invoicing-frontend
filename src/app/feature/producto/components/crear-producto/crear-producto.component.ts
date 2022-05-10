@@ -22,10 +22,10 @@ export class CrearProductoComponent implements OnInit {
 
   crear() {
     this.productoServices.guardar(this.productoForm.value).subscribe(
-      data => {if (data){
+      () => {
         this.alerta.exito(PRODUCTO_CREADO_CORRECTAMENTE);
         this.productoForm.reset();
-      }}
+      }
     );
   }
 
