@@ -10,13 +10,12 @@
         <th scope="col">Acciones</th> 
     </tr></thead>
     <tbody>
-      <tr *ngFor="let factura of listaFacturas; let i = index">
+      <tr *ngFor="let factura of listaFacturas | async;">
         <td>{{factura.id}}</td>
         <td>{{factura.descripcion}}</td>
         <td>{{factura.fecha}} </td>
         <td>{{factura.total}} </td>
         <td> 
-          <!-- (click)= "navegar(usuario) -->
           <button class="btn btn-dark btn-sm" (click)="detalleFactura(factura)">Detalle</button>
           &nbsp;
           <button class="btn btn-primary btn-sm" (click)="eliminarFactura(i,factura)">Eliminar</button>

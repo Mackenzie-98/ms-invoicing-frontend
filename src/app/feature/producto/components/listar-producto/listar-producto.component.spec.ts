@@ -32,6 +32,7 @@ describe('ListarProductoComponent', () => {
     fixture = TestBed.createComponent(ListarProductoComponent);
     component = fixture.componentInstance;
     productoService = TestBed.inject(ProductoService);
+    component.ngOnInit();
     spyOn(productoService, 'consultar').and.returnValue(
       of(listaProductos)
     );

@@ -25,14 +25,18 @@ export class BorrarProductoComponent implements OnInit {
   }
 
   borrarProducto(): void {
+    this.borrado();
+  }
+
+  borrado(): void {
     this.alert.confirmacion(DESEA_ELIMINAR_PRODUCTO).subscribe(
       confirm => {
         if (confirm.confirmado) {
           this.productoService.eliminar(this.producto).subscribe(
             data => {
               if (data) {
-                this.alert.confirmacion(PRODUCTO_ELIMINADO_CORRECTAMENTE).subscribe( () =>
-                this.router.navigateByUrl('/producto'));
+                this.alert.exito(PRODUCTO_ELIMINADO_CORRECTAMENTE);
+                this.router.navigateByUrl('/producto');
               }
             });
         }

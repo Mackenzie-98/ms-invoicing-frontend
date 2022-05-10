@@ -1,61 +1,75 @@
-// import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-// import { of } from 'rxjs';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
-// import { CrearProductoComponent } from './crear-usuario.component';
-// import { CommonModule } from '@angular/common';
-// import { HttpClientModule } from '@angular/common/http';
-// import { RouterTestingModule } from '@angular/router/testing';
-// import { ProductoService } from '../../shared/service/usuario.service';
-// import { HttpService } from 'src/app/core/services/http.service';
-// import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpService } from 'src/app/core/services/http.service';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CrearUsuarioComponent } from './crear-usuario.component';
+import { UsuarioService } from '@usuario/shared/service/usuario.service';
+import { IAlertaService } from '@core/services/alertas/alerta.service';
+import { AlertaServiceMock } from '@core/services/alertas/alerta.service-mock';
 
-// describe('CrearProductoComponent', () => {
-//   let component: CrearProductoComponent;
-//   let fixture: ComponentFixture<CrearProductoComponent>;
-//   let productoService: ProductoService;
+describe('CrearUsuarioComponent', () => {
+  let component: CrearUsuarioComponent;
+  let fixture: ComponentFixture<CrearUsuarioComponent>;
+  let usuarioService: UsuarioService;
+  let alertaSpy: IAlertaService;
 
-//   beforeEach(waitForAsync(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [ CrearProductoComponent ],
-//       imports: [
-//         CommonModule,
-//         HttpClientModule,
-//         RouterTestingModule,
-//         ReactiveFormsModule,
-//         FormsModule
-//       ],
-//       providers: [ProductoService, HttpService],
-//     })
-//     .compileComponents();
-//   }));
+  afterEach(() => { TestBed.resetTestingModule(); });
+  afterAll(() => { TestBed.resetTestingModule(); });
 
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(CrearProductoComponent);
-//     component = fixture.componentInstance;
-//     productoService = TestBed.inject(ProductoService);
-//     spyOn(productoService, 'guardar').and.returnValue(
-//       of(true)
-//     );
-//     fixture.detectChanges();
-//   });
+  beforeEach(waitForAsync(() => {
+    alertaSpy = {
+        informativa: jasmine.createSpy('informativa'),
+        confirmacion: null,
+        errorInesperado: jasmine.createSpy('errorInesperado'),
+        exito: jasmine.createSpy('Se ha creado el usuario correctamente.')
+      };
+    TestBed.configureTestingModule({
+      declarations: [ CrearUsuarioComponent ],
+      imports: [
+        CommonModule,
+        HttpClientModule,
+        RouterTestingModule,
+        ReactiveFormsModule,
+        FormsModule
+      ],
+      providers: [UsuarioService, HttpService,{ provide: IAlertaService, useValue: new AlertaServiceMock(alertaSpy) }],
+    })
+    .compileComponents();
+  }));
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(CrearUsuarioComponent);
+    component = fixture.componentInstance;
+    usuarioService = TestBed.inject(UsuarioService);
+    spyOn(usuarioService, 'guardar').and.returnValue(
+      of(true)
+    );
+    fixture.detectChanges();
+  });
 
-//   it('formulario es invalido cuando esta vacio', () => {
-//     expect(component.productoForm.valid).toBeFalsy();
-//   });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
-//   it('Registrando producto', () => {
-//     expect(component.productoForm.valid).toBeFalsy();
-//     component.productoForm.controls.id.setValue('001');
-//     component.productoForm.controls.descripcion.setValue('Producto test');
-//     expect(component.productoForm.valid).toBeTruthy();
+  it('formulario es invalido cuando esta vacio', () => {
+    expect(component.usuarioForm.valid).toBeFalsy();
+  });
 
-//     component.cerar();
+  it('Registrando usuario', () => {
+    expect(component.usuarioForm.valid).toBeFalsy();
+    component.usuarioForm.controls.nombre.setValue('usuario1');
+    component.usuarioForm.controls.clave.setValue(1234);
+    expect(component.usuarioForm.valid).toBeTruthy();
 
-//     // Aca validamos el resultado esperado al enviar la petición
-//     // TODO adicionar expect
-//   });
-// });
+    component.crear();
+
+    expect(alertaSpy.exito).toHaveBeenCalled();
+
+    // Aca validamos el resultado esperado al enviar la petición
+    // TODO adicionar expect
+  });
+});
