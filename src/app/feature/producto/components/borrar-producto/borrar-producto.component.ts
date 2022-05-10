@@ -25,10 +25,6 @@ export class BorrarProductoComponent implements OnInit {
   }
 
   borrarProducto(): void {
-    this.borrado();
-  }
-
-  borrado(): void {
     this.alert.confirmacion(DESEA_ELIMINAR_PRODUCTO).subscribe(
       confirm => {
         if (confirm.confirmado) {

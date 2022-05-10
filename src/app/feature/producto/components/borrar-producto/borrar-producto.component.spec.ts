@@ -21,8 +21,7 @@ describe('BorrarProductoComponent', () => {
   let productoService: ProductoService;
   let alertaSpy: IAlertaService;
   let mockRouter = {
-    navigate: jasmine.createSpy('navigate'),
-    navigateByUrl: jasmine.createSpy('producto'),
+    navigateByUrl: jasmine.createSpy('/producto'),
   }
 
   afterEach(() => { TestBed.resetTestingModule(); });
@@ -71,9 +70,11 @@ describe('BorrarProductoComponent', () => {
   });
 
   it('Debe borrar un produccto ', () => {
+
     component.borrarProducto();
     expect(alertaSpy.confirmacion).toHaveBeenCalled();
   });
+
 
 });
 

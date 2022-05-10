@@ -69,7 +69,5 @@ describe('CrearUsuarioComponent', () => {
 
     expect(alertaSpy.exito).toHaveBeenCalled();
 
-    // Aca validamos el resultado esperado al enviar la petición
-    // TODO adicionar expect
   });
 });

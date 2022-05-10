@@ -22,15 +22,19 @@ describe('BorrarUsuarioComponent', () => {
   let alertaSpy: IAlertaService;
 
   let mockRouter = {
-    navigate: jasmine.createSpy('navigate'),
-    navigateByUrl: jasmine.createSpy('usuario'),
+    navigateByUrl: jasmine.createSpy('/usuario'),
   }
 
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
 
   beforeEach(waitForAsync(() => {
-
+    alertaSpy = {
+      informativa: jasmine.createSpy('informativa'),
+      confirmacion: jasmine.createSpy('Esta seguro de eliminar este usuario?'),
+      errorInesperado: jasmine.createSpy('errorInesperado'),
+      exito: jasmine.createSpy('Se ha eliminado el usuario correctamente.')
+    };
     TestBed.configureTestingModule({
       declarations: [ BorrarUsuarioComponent ],
       imports: [
@@ -65,6 +69,10 @@ describe('BorrarUsuarioComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('Debe borrar un usuario ', () => {
+    component.borrarUsuario();
+    expect(alertaSpy.confirmacion).toHaveBeenCalled();
+  });
 
 });
 

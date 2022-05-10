@@ -14,7 +14,7 @@ describe('ListarUsuarioComponent', () => {
   let fixture: ComponentFixture<ListarUsuarioComponent>;
   let usuarioService: UsuarioService;
   const listaUsuarios: Usuario[] = [new Usuario(1, 'test','1234',null), new Usuario(2, 'test2','1234',null)];
-
+  
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ListarUsuarioComponent],
@@ -39,10 +39,15 @@ describe('ListarUsuarioComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-    component.listaUsuarios.subscribe(resultado => {
+      expect(component).toBeTruthy();
+      component.listaUsuarios.subscribe(resultado => {
       expect(2).toBe(resultado.length);
+    });
   });
-});
+
+  it('should encript password', () => {
+    expect(component.hashPassword('1234')).toBe('****');
+  });
+
 
 });
