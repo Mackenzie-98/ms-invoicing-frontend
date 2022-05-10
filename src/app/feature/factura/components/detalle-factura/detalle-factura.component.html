@@ -3,10 +3,22 @@
   <div class="container">
       <div class="container" data-aos="fade-up">
           <div class="invoice-box">
-              <table cellpadding="0" cellspacing="0">
+              <table >
+                <caption class="text-secondary small">
+                  Detalle Factura
+                </caption>
+                <tr>
+                  <th></th>
+                </tr>
                   <tr class="top">
                       <td colspan="2">
                           <table>
+                            <caption class="text-secondary small">
+                              Autor
+                            </caption>
+                            <tr>
+                              <th></th>
+                            </tr>
                               <tr>
                                   <td class="tittle" style="width: 8%;">
                                       <img src="../assets/logo.png" style="width: 100%;" />
@@ -28,7 +40,12 @@
 
                   <tr class="information">
                       <td colspan="2">
-                          <table> 
+                          <table>
+                            <caption class="text-secondary small">
+                            </caption>
+                            <tr>
+                              <th></th>
+                            </tr>
                               <tr>
                                   <td style="text-align: left; ">
                                       <p style="font-weight: bold;" class="mb-1">Edinsson Adrian Melo Calvo</p>
@@ -40,7 +57,38 @@
                           </table>
                       </td>
                   </tr>
+
+                  <table id="detalle-usuario" class="container-fluid text-center"> 
+                    <caption class="text-secondary small">
+                      Detalles Usuario
+                    </caption>
+                    <thead> 
+                      <tr class="heading container-fluid">
+                        <th scope="col" class="text-left">Usuario</th>
+                        <th scope="col" class="text-right">Datos</th>
+                      </tr>
+                  </thead>
+                    <tbody>
+                      <tr>
+                        <td class="text-left">ID</td>
+                        <td class="text-right">{{factura.usuario.id}}</td>
+                      </tr>
+                      <tr>
+                        <td class="text-left">Nombre</td>
+                        <td class="text-right">{{factura.usuario.nombre}}</td>
+                      </tr>
+                      <tr>
+                        <td class="text-left">Fecha de creacion</td>
+                        <td class="text-right">{{factura.usuario.fechaCreacion}}</td>
+                      </tr>
+                     </tbody>
+                  </table>
+
+
                     <table id="detalle-factura" class="container-fluid text-center"> 
+                      <caption class="text-secondary small">
+                        Detalles Factura
+                      </caption>
                       <thead> 
                         <tr class="heading container-fluid">
                           <th scope="col" class="text-left">Facturación</th>
@@ -64,6 +112,9 @@
                     </table>
 
                   <table id="detalle-venta" class="container-fluid text-center">  
+                    <caption class="text-secondary small">
+                      Detalle Compras
+                    </caption>
                     <thead> 
                       <tr class="heading container-fluid">
                         <th scope="col">Productos</th>
