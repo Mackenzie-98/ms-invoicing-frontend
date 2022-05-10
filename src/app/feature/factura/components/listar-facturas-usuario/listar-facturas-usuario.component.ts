@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Factura } from '@factura/shared/model/factura';
 import { FacturaService } from '@factura/shared/service/factura.service';
 import { IAlertaService } from '@core/services/alertas/alerta.service';
-import { Observable } from 'rxjs';
 
 const FACTURA_ELIMINADA_CORECTAMENTE = "Factura eliminada correctamente.";
 @Component({
@@ -13,7 +12,7 @@ const FACTURA_ELIMINADA_CORECTAMENTE = "Factura eliminada correctamente.";
 })
 export class ListarFacturasUsuarioComponent implements OnInit {
 
-  public listaFacturas: Observable<Factura[]>;
+  listaFacturas: Factura[];
   idUsuario: number;
 
   constructor(protected facturaService: FacturaService, private router: Router, protected alerta: IAlertaService) { 
@@ -21,7 +20,9 @@ export class ListarFacturasUsuarioComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listaFacturas = this.facturaService.consultarPorUsuario(this.idUsuario);
+      this.facturaService.consultarPorUsuario(this.idUsuario).subscribe(data =>{
+      this.listaFacturas = data;
+    });
   }
 
 
@@ -29,9 +30,7 @@ export class ListarFacturasUsuarioComponent implements OnInit {
     this.facturaService.eliminar(factura).subscribe(() => {
         this.alerta.exito(FACTURA_ELIMINADA_CORECTAMENTE)
     });
-    this.listaFacturas.subscribe(data =>{
-      data.splice(index,1);
-    });
+    this.listaFacturas.splice(index,1);
   }
 
   detalleFactura(factura: Factura){

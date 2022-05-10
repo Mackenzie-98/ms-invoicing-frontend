@@ -13,7 +13,7 @@
         <th scope="col">Acciones</th> 
     </tr></thead>
     <tbody>
-      <tr *ngFor="let factura of listaFacturas | async; let i = index;">
+      <tr *ngFor="let factura of listaFacturas; let i = index;">
         <td>{{factura.id}}</td>
         <td>{{factura.descripcion}}</td>
         <td>{{factura.fecha}} </td>

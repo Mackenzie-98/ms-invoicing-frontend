@@ -46,7 +46,8 @@ describe('ListarUsuarioComponent', () => {
   });
 
   it('should encript password', () => {
-    expect(component.hashPassword('1234')).toBe('****');
+    let hash= component.hashPassword('1234');
+    expect(hash).toBe('****');
   });
 
 
