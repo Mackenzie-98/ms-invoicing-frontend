@@ -6,6 +6,10 @@ describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
   let fixture: ComponentFixture<ToolbarComponent>;
 
+  afterEach(() => { TestBed.resetTestingModule(); });
+  afterAll(() => { TestBed.resetTestingModule(); });
+
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ToolbarComponent ]

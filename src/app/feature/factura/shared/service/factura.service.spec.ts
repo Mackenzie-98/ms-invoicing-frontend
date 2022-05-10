@@ -1,62 +1,62 @@
-// import { TestBed } from '@angular/core/testing';
-// import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-// import { ProductoService } from './usuario.service';
-// import { environment } from 'src/environments/environment';
-// import { HttpService } from 'src/app/core/services/http.service';
-// import { Usuario } from '../model/usuario';
-// import { HttpResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { HttpService } from 'src/app/core/services/http.service';
+import { HttpResponse } from '@angular/common/http';
+import { FacturaService } from './factura.service';
+import { Factura } from '../model/factura';
 
-// describe('ProductoService', () => {
-//   let httpMock: HttpTestingController;
-//   let service: ProductoService;
-//   const apiEndpointProductoConsulta = `${environment.endpoint}/tiposFamilia`;
-//   const apiEndpointProductos = `${environment.endpoint}/productos`;
+describe('ProductoService', () => {
+  let httpMock: HttpTestingController;
+  let service: FacturaService;
+  const apiEndpointFacturasConsulta = `${environment.endpoint}/facturas`;
+  const apiEndpointFacturas= `${environment.endpoint}/facturas`;
 
-//   beforeEach(() => {
-//     const injector = TestBed.configureTestingModule({
-//       imports: [HttpClientTestingModule],
-//       providers: [ProductoService, HttpService]
-//     });
-//     httpMock = injector.inject(HttpTestingController);
-//     service = TestBed.inject(ProductoService);
-//   });
+  beforeEach(() => {
+    const injector = TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [FacturaService, HttpService]
+    });
+    httpMock = injector.inject(HttpTestingController);
+    service = TestBed.inject(FacturaService);
+  });
 
-//   it('should be created', () => {
-//     const productService: ProductoService = TestBed.inject(ProductoService);
-//     expect(productService).toBeTruthy();
-//   });
+  it('should be created', () => {
+    const facturaService: FacturaService = TestBed.inject(FacturaService);
+    expect(facturaService).toBeTruthy();
+  });
 
-//   it('deberia listar productos', () => {
-//     const dummyProductos = [
-//       new Usuario(1, 'usuario1','clave1',new Date()), new Usuario('2', 'Producto 2')
-//     ];
-//     service.consultar().subscribe(productos => {
-//       expect(productos.length).toBe(2);
-//       expect(productos).toEqual(dummyProductos);
-//     });
-//     const req = httpMock.expectOne(apiEndpointProductoConsulta);
-//     expect(req.request.method).toBe('GET');
-//     req.flush(dummyProductos);
-//   });
+  it('deberia listar facturas', () => {
+    const dummyFacturas = [
+    new Factura(1,"1",null,null,null,0), new Factura(2,"1",null,null,null,0)
+    ];
+    service.consultar().subscribe(facturas => {
+      expect(facturas.length).toBe(2);
+      expect(facturas).toEqual(dummyFacturas);
+    });
+    const req = httpMock.expectOne(apiEndpointFacturasConsulta);
+    expect(req.request.method).toBe('GET');
+    req.flush(dummyFacturas);
+  });
 
-//   it('deberia crear un producto', () => {
-//     const dummyProducto = new Producto('1', 'Producto 1');
-//     service.guardar(dummyProducto).subscribe((respuesta) => {
-//       expect(respuesta).toEqual(true);
-//     });
-//     const req = httpMock.expectOne(apiEndpointProductos);
-//     expect(req.request.method).toBe('POST');
-//     req.event(new HttpResponse<boolean>({body: true}));
-//   });
+  it('deberia crear una factura', () => {
+    const dummyFactura = new Factura(1,"test",null,null,null,0);
+    service.guardar(dummyFactura).subscribe((respuesta) => {
+      expect(respuesta).toEqual(true);
+    });
+    const req = httpMock.expectOne(apiEndpointFacturas);
+    expect(req.request.method).toBe('POST');
+    req.event(new HttpResponse<boolean>({body: true}));
+  });
 
-//   it('deberia eliminar un producto', () => {
-//     const dummyProducto = new Producto('1', 'Producto 1');
-//     service.eliminar(dummyProducto).subscribe((respuesta) => {
-//       expect(respuesta).toEqual(true);
-//     });
-//     const req = httpMock.expectOne(`${apiEndpointProductos}/1`);
-//     expect(req.request.method).toBe('DELETE');
-//     req.event(new HttpResponse<boolean>({body: true}));
-//   });
-// });
+  it('deberia eliminar una factura', () => {
+    const dummyFactura = new Factura(1,"test",null,null,null,0);
+    service.eliminar(dummyFactura).subscribe((respuesta) => {
+      expect(respuesta).toEqual(true);
+    });
+    const req = httpMock.expectOne(`${apiEndpointFacturas}/1`);
+    expect(req.request.method).toBe('DELETE');
+    req.event(new HttpResponse<boolean>({body: true}));
+  });
+});
