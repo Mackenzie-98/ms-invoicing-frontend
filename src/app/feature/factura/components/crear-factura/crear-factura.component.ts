@@ -25,16 +25,14 @@ export class CrearFacturaComponent implements OnInit {
   total: number = 0;
   descripcion: string;
 
-  
-
   constructor(protected productoService: ProductoService,protected facturaServices: FacturaService, 
     protected alerta: IAlertaService, private router: Router) { 
     this.usuario = this.router.getCurrentNavigation().extras.state.usuarioInput;
   }
 
   ngOnInit() {
-    this.productoService.consultar().subscribe(data =>{
-      if(data){this.listaProductos = data;}
+    this.productoService.consultar().subscribe(data=>{
+      this.listaProductos = data;
     });
   }
 

@@ -39,7 +39,7 @@
           <p class="text-secondary mb-1">Productos</p>
           <select (change)="onChange($event.target.value)" class="form-select container-fluid">
             <option selected>Elige los productos</option>
-            <option *ngFor="let p of listaProductos;let i = index" [value]="i"> {{p.nombre}} </option>
+            <option *ngFor="let p of listaProductos ;let i = index" [value]="i"> {{p.nombre}} </option>
           </select> 
       </div>
 
