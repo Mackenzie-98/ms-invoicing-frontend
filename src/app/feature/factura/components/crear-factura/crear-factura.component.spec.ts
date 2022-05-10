@@ -24,6 +24,7 @@ describe('CrearFacturaComponent', () => {
   let mockRouter = {
     
     navigate: jasmine.createSpy('navigate'),
+    navigateByUrl: jasmine.createSpy('navigateByUrl'),
     getCurrentNavigation: () => {
       return {
          extras: {
