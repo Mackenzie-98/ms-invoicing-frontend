@@ -14,8 +14,20 @@ import { Usuario } from '@usuario/shared/model/usuario';
 describe('CrearFacturaComponent', () => {
   let component: DetalleFacturaComponent;
   let fixture: ComponentFixture<DetalleFacturaComponent>;
-  let router: jasmine.SpyObj<Router>;
-
+  let user = new Usuario(1, 'test','1234',null);
+  let factura = new Factura(1,"test",user,null,null,0);
+  let mockRouter = {
+    navigateByUrl: jasmine.createSpy('navigate'),
+    getCurrentNavigation: () => {
+      return {
+         extras: {
+            state:{
+              facturaInput: factura
+            }
+          }
+        }
+      }
+  }
   beforeEach(waitForAsync(() => {
 
     TestBed.configureTestingModule({
@@ -26,16 +38,12 @@ describe('CrearFacturaComponent', () => {
         RouterTestingModule,
         FormsModule
       ],
-      providers: [FacturaService, HttpService, { provide: IAlertaService}],
+      providers: [FacturaService, HttpService, {provide: Router, useValue: mockRouter}, { provide: IAlertaService}],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    router = TestBed.get(Router);
-    let user = new Usuario(1, 'test','1234',null);
-    let factura = new Factura(1,"test",user,null,null,0);
-    spyOn(router, 'getCurrentNavigation').and.returnValue({ extras: { state: { facturaInput: factura} } } as any);
     fixture = TestBed.createComponent(DetalleFacturaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -43,6 +51,10 @@ describe('CrearFacturaComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should calculate subtotal', () => {
+    expect(component.subTotal(2,3)).toBe(6);
   });
 
 });

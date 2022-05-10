@@ -24,13 +24,13 @@ export class ListarUsuarioComponent implements OnInit {
   }
 
   vender(usuario: Usuario){
-    this.router.navigate(['factura/crear-factura'], {
+    this.router.navigate(['/factura/crear-factura'], {
       state: {usuarioInput: usuario}
     });
   }
 
   verFacturas(idUsuario: number){
-    this.router.navigate(['factura/listar-facturas-usuario'], {
+    this.router.navigate(['/factura/listar-facturas-usuario'], {
       state: {idUsuarioInput: idUsuario}
     });
   }
