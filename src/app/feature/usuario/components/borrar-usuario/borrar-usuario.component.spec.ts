@@ -12,7 +12,6 @@ import { BorrarUsuarioComponent } from './borrar-usuario.component';
 import { UsuarioComponent } from '../usuario/usuario.component';
 import { Usuario } from '@usuario/shared/model/usuario';
 import { UsuarioService } from '@usuario/shared/service/usuario.service';
-import { Router } from '@angular/router';
 
 describe('BorrarUsuarioComponent', () => {
 
@@ -20,10 +19,6 @@ describe('BorrarUsuarioComponent', () => {
   let fixture: ComponentFixture<BorrarUsuarioComponent>;
   let usuarioService: UsuarioService;
   let alertaSpy: IAlertaService;
-
-  let mockRouter = {
-    navigateByUrl: jasmine.createSpy('/usuario'),
-  }
 
   afterEach(() => { TestBed.resetTestingModule(); });
   afterAll(() => { TestBed.resetTestingModule(); });
@@ -48,7 +43,6 @@ describe('BorrarUsuarioComponent', () => {
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
       providers: [UsuarioService, HttpService,
-        {provide: Router, useValue: mockRouter},
         {provide: IAlertaService, useValue: new AlertaServiceMock(alertaSpy)} ]
     })
     .compileComponents();

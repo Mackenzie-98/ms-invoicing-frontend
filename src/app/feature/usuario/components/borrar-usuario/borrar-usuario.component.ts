@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { IAlertaService } from '@core/services/alertas/alerta.service';
 import { Usuario } from '@usuario/shared/model/usuario';
 import { UsuarioService } from '@usuario/shared/service/usuario.service';
@@ -18,7 +17,7 @@ export class BorrarUsuarioComponent implements OnInit {
   @Input()
   usuario: Usuario;
 
-  constructor(protected usuarioService: UsuarioService, private router: Router,
+  constructor(protected usuarioService: UsuarioService,
     protected alert: IAlertaService) { }
 
   ngOnInit() {
@@ -29,11 +28,9 @@ export class BorrarUsuarioComponent implements OnInit {
       confirm => {
         if (confirm.confirmado) {
           this.usuarioService.eliminar(this.usuario).subscribe(
-            data => {
-              if (data) {
+            ()=> {
                 this.alert.exito(mensajeEliminacionUsuario);
-                this.router.navigateByUrl('/usuario');
-              }
+                window.location.reload();
             });
         }
       });
